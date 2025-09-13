@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Health Website - Login</title>
+  <style>
+    body, html {
+      height: 100%;
+      margin: 0;
+      font-family: "Segoe UI", sans-serif;
+    }
+
+    body {
+      background: url("https://images.unsplash.com/photo-1588776814546-0409be92d0f4") no-repeat center center fixed;
+      background-size: cover;
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(6px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .login-box {
+      background: rgba(255,255,255,0.08);
+      padding: 40px;
+      border-radius: 15px;
+      width: 340px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+      text-align: center;
+      color: #fff;
+    }
+
+    .logo {
+      width: 70px;
+      margin-bottom: 10px;
+    }
+
+    .company-name {
+      font-size: 22px;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    .thought {
+      font-size: 14px;
+      font-style: italic;
+      color: #ddd;
+      margin-bottom: 25px;
+    }
+
+    .login-box input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 8px;
+      outline: none;
+      font-size: 15px;
+      background: rgba(255,255,255,0.2);
+      color: #fff;
+    }
+
+    .login-box input::placeholder {
+      color: #ddd;
+    }
+
+    .login-box button {
+      width: 100%;
+      padding: 12px;
+      background: #28a745;
+      border: none;
+      border-radius: 8px;
+      color: #fff;
+      font-size: 18px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .login-box button:hover {
+      background: #1e7e34;
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay">
+    <div class="login-box">
+      <img src="https://cdn-icons-png.flaticon.com/512/2966/2966485.png" alt="Health Logo" class="logo">
+      <div class="company-name">All in one calculater</div>
+      <div class="thought">“ calculete and enjoy your result ”</div>
+
+      <!-- Login Form linking to dashboard -->
+      <form action="sec.html" method="get">
+        <input type="text" placeholder="Username" required>
+        <input type="password" placeholder="Password" required>
+        <button type="submit">Login</button>
+      </form>
+
+    </div>
+  </div>
+</body>
+</html>

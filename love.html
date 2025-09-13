@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Love & Friendship Calculator</title>
+<style>
+  body {
+    font-family: Arial;
+    background: #ff758c;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin:0;
+    color:#fff;
+  }
+  .container {
+    background: rgba(0,0,0,0.3);
+    padding: 30px;
+    border-radius: 20px;
+    text-align:center;
+    width:350px;
+  }
+  input, select, button {
+    width:80%;
+    padding:10px;
+    margin:10px 0;
+    border-radius:10px;
+    border:none;
+    font-size:16px;
+    text-align:center;
+  }
+  button {
+    cursor:pointer;
+    font-weight:bold;
+    background:#fff;
+    color:#ff4f81;
+  }
+  button:hover {
+    background:#ff4f81;
+    color:#fff;
+  }
+  #result {
+    margin-top:20px;
+    font-size:18px;
+    font-weight:bold;
+    min-height:60px;
+    color:#fff;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h2>💖 Love & Friendship Calculator 💖</h2>
+  <input type="text" id="name1" placeholder="Your Name"><br>
+  <input type="text" id="name2" placeholder="Friend/Partner Name"><br>
+  <select id="relation">
+    <option value="love">Love ❤</option>
+    <option value="friend">Friendship 👬</option>
+  </select><br>
+  <button type="button" id="calcBtn">Calculate 💘</button>
+  <div id="result"></div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var btn = document.getElementById('calcBtn');
+  btn.addEventListener('click', function(){
+    var n1 = document.getElementById('name1').value.trim();
+    var n2 = document.getElementById('name2').value.trim();
+    var rel = document.getElementById('relation').value;
+    var res = document.getElementById('result');
+
+    if(!n1 || !n2){
+      res.textContent = "⚠ Please enter both names!";
+      return;
+    }
+
+    if(n1.toLowerCase() === n2.toLowerCase()){
+      // Corrected line with backticks
+      res.innerHTML = '💖 Self Love! 💖<br> you are 100% in love with yourself 😍';
+      return;
+    }
+
+    var per = Math.floor(Math.random()*51)+50; // 50-100%
+    var msg = '';
+
+    if(rel==='love'){
+      msg = per>80?'Perfect Match ❤':'Good Compatibility 😊';
+      res.innerHTML = n1+' ❤ '+n2+' = '+per+'%<br>'+msg;
+    } else {
+      msg = per>80?'Best Friends Forever 👭':'Strong Bond 🤝';
+      res.innerHTML = n1+' 🤝 '+n2+' = '+per+'%<br>'+msg;
+    }
+  });
+});
+</script>
+
+</body>
+</html>
