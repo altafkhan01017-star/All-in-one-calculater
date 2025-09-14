@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Health Calculator</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #89f7fe, #66a6ff);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: #fff;
+            padding: 25px;
+            border-radius: 15px;
+            width: 350px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            text-align: center;
+            animation: fadeIn 1s ease-in-out;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .input-box {
+            margin: 10px 0;
+            text-align: left;
+        }
+        label {
+            font-weight: bold;
+            color: #444;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+        input:focus, select:focus {
+            border-color: #66a6ff;
+            outline: none;
+            box-shadow: 0 0 8px rgba(102,166,255,0.5);
+        }
+        button {
+            background: #66a6ff;
+            color: #fff;
+            border: none;
+            padding: 12px;
+            width: 100%;
+            border-radius: 8px;
+            margin-top: 15px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        button:hover {
+            background: #4a90e2;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 16px;
+            padding: 12px;
+            border-radius: 10px;
+            font-weight: bold;
+        }
+        #message {
+            margin-top: 10px;
+            font-size: 15px;
+            color: #444;
+        }
+        /* Animation */
+        @keyframes fadeIn {
+            from {opacity: 0; transform: translateY(-20px);}
+            to {opacity: 1; transform: translateY(0);}
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Health Calculator</h1>
+
+        <div class="input-box">
+            <label>Age</label>
+            <input type="number" id="age" min="1" max="120">
+        </div>
+
+        <div class="input-box">
+            <label>Gender</label>
+            <select id="gender">
+                <option value="">--Select Gender--</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+        </div>
+
+        <div class="input-box">
+            <label>Height (cm)</label>
+            <input type="number" id="height" min="50" max="250">
+        </div>
+
+        <div class="input-box">
+            <label>Weight (kg)</label>
+            <input type="number" id="weight" min="10" max="200">
+        </div>
+
+        <button onclick="calculateHealth()">Calculate</button>
+
+        <div id="result"></div>
+        <div id="message"></div>
+    </div>
+
+    <script>
+    function calculateHealth() {
+        let age = parseInt(document.getElementById("age").value);
+        let gender = document.getElementById("gender").value;
+        let height = parseFloat(document.getElementById("height").value);
+        let weight = parseFloat(document.getElementById("weight").value);
+
+        if (!age || !height || !weight || !gender) {
+            alert("⚠ Please enter all details!");
+            return;
+        }
+
+        let heightInMeter = height / 100;
+        let bmi = weight / (heightInMeter * heightInMeter);
+
+        let status = "";
+        let message = "";
+        let color = "";
+
+        if (bmi < 18.5) {
+            status = "Underweight 😟";
+            message = "You are underweight. Eat more nutritious food and increase calories.";
+            color = "#f4d03f";
+        } else if (bmi >= 18.5 && bmi < 24.9) {
+            status = "Normal & Healthy 🙂";
+            message = "Great! You are healthy. Maintain your diet and keep exercising.";
+            color = "#2ecc71";
+        } else if (bmi >= 25 && bmi < 29.9) {
+            status = "Overweight 😕";
+            message = "You are overweight. Reduce junk food and start daily exercise.";
+            color = "#f39c12";
+        } else {
+            status = "Obese 😟";
+            message = "You are obese. Consult a doctor and follow a strict diet & workout plan.";
+            color = "#e74c3c";
+        }
+
+        let bmr;
+        if (gender === "male") {
+            bmr = 10 * weight + 6.25 * height - 5 * age + 5;
+        } else {
+            bmr = 10 * weight + 6.25 * height - 5 * age - 161;
+        }
+
+        document.getElementById("result").style.background = color;
+        document.getElementById("result").style.color = "#fff";
+        document.getElementById("result").innerHTML = 
+            `Age: ${age} years <br>
+             Gender: ${gender.charAt(0).toUpperCase() + gender.slice(1)} <br>
+             BMI: ${bmi.toFixed(2)} <br>
+             Health Status: <b>${status}</b><br>
+             Daily Calorie Needs: ${Math.round(bmr)} kcal/day`;
+
+        // Corrected line with quotes and message variable
+        document.getElementById("message").innerHTML = '<b>Message:</b> ' + message;
+    }
+</script> 
+
+</body>
+</html>
